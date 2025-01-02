@@ -10,6 +10,7 @@
  ******************************************************************************************* */
 
 /**
+ * 1
  * Determines whether a given number is positive. Zero is considered positive.
  * This function does not use Number or Math class methods.
  *
@@ -21,11 +22,12 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
+ * 2
  * Returns the maximum of three numbers without using Array and Math classes methods.
  *
  * @param {number} a - The first number.
@@ -38,11 +40,22 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  let max = a;
+
+  if (b > max) {
+    max = b;
+  }
+
+  if (c > max) {
+    max = c;
+  }
+
+  return max;
 }
 
 /**
+ * 3
  * Checks if a queen can capture a king in the next move on an 8x8 chessboard.
  * See more details at https://en.wikipedia.org/wiki/Queen_(chess)
  *
@@ -60,11 +73,15 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  const { x: qx, y: qy } = queen;
+  const { x: kx, y: ky } = king;
+
+  return qx === kx || qy === ky || Math.abs(qx - kx) === Math.abs(qy - ky);
 }
 
 /**
+ * 4
  * Determines whether a triangle is isosceles based on its side lengths.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -82,11 +99,15 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a + b <= c || a + c <= b || b + c <= a) {
+    return false;
+  }
+  return a === b || a === c || b === c;
 }
 
 /**
+ * 5
  * Converts a number to Roman numerals. The number will be between 1 and 39.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -100,11 +121,40 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let result = '';
+  let n = num;
+
+  while (n >= 10) {
+    result += 'X';
+    n -= 10;
+  }
+
+  if (n === 9) {
+    result += 'IX';
+    n -= 9;
+  }
+
+  if (n >= 5) {
+    result += 'V';
+    n -= 5;
+  }
+
+  if (n === 4) {
+    result += 'IV';
+    n -= 4;
+  }
+
+  while (n > 0) {
+    result += 'I';
+    n -= 1;
+  }
+
+  return result;
 }
 
 /**
+ * 6
  * Converts a number to a string, replacing digits with words.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -119,11 +169,58 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    const char = numberStr[i];
+    switch (char) {
+      case '-':
+        result += 'minus';
+        break;
+      case '0':
+        result += `${result.length > 0 ? ' ' : ''}zero`;
+        break;
+      case '1':
+        result += `${result.length > 0 ? ' ' : ''}one`;
+        break;
+      case '2':
+        result += `${result.length > 0 ? ' ' : ''}two`;
+        break;
+      case '3':
+        result += `${result.length > 0 ? ' ' : ''}three`;
+        break;
+      case '4':
+        result += `${result.length > 0 ? ' ' : ''}four`;
+        break;
+      case '5':
+        result += `${result.length > 0 ? ' ' : ''}five`;
+        break;
+      case '6':
+        result += `${result.length > 0 ? ' ' : ''}six`;
+        break;
+      case '7':
+        result += `${result.length > 0 ? ' ' : ''}seven`;
+        break;
+      case '8':
+        result += `${result.length > 0 ? ' ' : ''}eight`;
+        break;
+      case '9':
+        result += `${result.length > 0 ? ' ' : ''}nine`;
+        break;
+      case '.':
+      case ',':
+        result += ` point`;
+        break;
+      default:
+        break;
+    }
+  }
+  return result;
 }
 
 /**
+ * 7
  * Determines whether a string is a palindrome.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -140,6 +237,7 @@ function isPalindrome(/* str */) {
 }
 
 /**
+ * 8
  * Finds the first occurrence of a letter in a string.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -158,6 +256,7 @@ function getIndexOf(/* str, letter */) {
 }
 
 /**
+ * 9
  * Checks if a number contains a specific digit.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -177,6 +276,7 @@ function isContainNumber(/* num, digit */) {
 }
 
 /**
+ * 10
  * Finds the index of an element in an array where the sum of elements to the left equals the sum of elements to the right.
  * If such an index does not return -1.
  * In this task, the use of methods of the Array and String classes is not allowed.
@@ -194,6 +294,7 @@ function getBalanceIndex(/* arr */) {
 }
 
 /**
+ * 11
  * Generates a spiral matrix of a given size, filled with numbers in ascending order starting from one.
  * The direction of filling with numbers is clockwise.
  * Usage of String and Array classes methods is not allowed in this task.
@@ -219,6 +320,7 @@ function getSpiralMatrix(/* size */) {
 }
 
 /**
+ * 12
  * Rotates a matrix by 90 degrees clockwise in place.
  * Take into account that the matrix size can be very large. Consider how you can optimize your solution.
  * Usage of String and Array class methods is not allowed in this task.
@@ -238,6 +340,7 @@ function rotateMatrix(/* matrix */) {
 }
 
 /**
+ * 13
  * Sorts an array of numbers in ascending order in place.
  * Employ any sorting algorithm of your choice.
  * Take into account that the array can be very large. Consider how you can optimize your solution.
@@ -256,6 +359,7 @@ function sortByAsc(/* arr */) {
 }
 
 /**
+ * 14
  * Shuffles characters in a string so that the characters with an odd index are moved to the end of the string at each iteration.
  * Take into account that the string can be very long and the number of iterations is large. Consider how you can optimize your solution.
  * Usage of Array class methods is not allowed in this task.
@@ -277,6 +381,7 @@ function shuffleChar(/* str, iterations */) {
 }
 
 /**
+ * 15
  * Returns the nearest largest integer consisting of the digits of the given positive integer.
  * If there is no such number, it returns the original number.
  * Usage of String class methods is not allowed in this task.
